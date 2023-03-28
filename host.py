@@ -116,31 +116,66 @@ class Hospital:
         
         ## Create DataframeRight
         self.txtPrescription=Text(DataframeRight,font=("arial",12,"bold"),width=46,height=16,padx=2,pady=6)
+        
         self.txtPrescription.grid(row=0,column=0)
+        
+        
         ## Create Buttonframe
-        btnPrescription=Button(Buttonframe,bg="blue",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
+        btnPrescription=Button(Buttonframe,text = "Prestiption",bg="green",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
         btnPrescription.grid(row=0,column=0)
         
-        btnPrescription=Button(Buttonframe,bg="blue",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
+        btnPrescription=Button(Buttonframe,text="Prestiption Data",bg="green",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
         btnPrescription.grid(row=0,column=1)
         
-        btnPrescription=Button(Buttonframe,bg="blue",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
+        btnPrescription=Button(Buttonframe,text="Update",bg="green",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
         btnPrescription.grid(row=0,column=2)
         
-        btnPrescription=Button(Buttonframe,bg="blue",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
+        btnPrescription=Button(Buttonframe,text="Delete",bg="green",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
         btnPrescription.grid(row=0,column=3)
         
-        btnPrescription=Button(Buttonframe,bg="blue",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
+        btnPrescription=Button(Buttonframe,text="Clear",bg="green",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
         btnPrescription.grid(row=0,column=4)
         
-        btnPrescription=Button(Buttonframe,bg="blue",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
+        btnPrescription=Button(Buttonframe,text ="Exit",bg="green",fg="white",font=("arial",12,"bold"),width=27,height=16,padx=2,pady=2)
         btnPrescription.grid(row=0,column=5)
+        
+        ## Create tabler
+        scroll_x=ttk.Scrollbar(Detailsframe,orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(Detailsframe,orient=VERTICAL)
+        self.hospital_table=ttk.Treeview(Detailsframe,column=("nameoftable","ref","dose","quantity","price","total"),xscrollcommand=scroll_y.set,yscrollcommand=scroll_x.set)
+        scroll_x.pack(side=BOTTOM,fill=X)
+        scroll_y.pack(side=RIGHT,fill=Y)
+        
+        scroll_x=ttk.Scrollbar(command=self.hospital_table.xview)
+        scroll_y=ttk.Scrollbar(command=self.hospital_table.yview)
+        
+        self.hospital_table.heading("nameoftable",text="Name of Tablet")
+        self.hospital_table.heading("ref",text="Reference No")
+        self.hospital_table.heading("dose",text="Dose")
+        self.hospital_table.heading("quantity",text="Quantity")
+
+        self.hospital_table.heading("price",text="Price")
+        self.hospital_table.heading("total",text="Total")
+
+        self.hospital_table['show']='headings'
+        
+        self.hospital_table.pack(fill=BOTH,expand=1)
+        self.hospital_table.column("nameoftable",width=100)
+        self.hospital_table.column("ref",width=100)
+        self.hospital_table.column("dose",width=100)
+        self.hospital_table.column("quantity",width=100)
+        self.hospital_table.column("price",width=100)
+        self.hospital_table.column("total",width=100)
+
+        self.hospital_table.pack(fill=BOTH,expand=1)
+        
         
 # Create the root window
 root = Tk()
 
 # Create an instance of the Hospital class
 hospital = Hospital(root)
+
 
 # Start the mainloop
 root.mainloop()
