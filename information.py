@@ -59,20 +59,8 @@ class Information:
         
         combo_gender.grid(row=4,column=1,padx=10,pady=5,sticky="w")
         
-        #citizen address
-        lbl_citizen_address=Label(lableframeleft,text="Address",font=("times new roman",12,"bold"),bg="white")
-        lbl_citizen_address.grid(row=5,column=0,padx=10,pady=5,sticky="w")
-
-        txt_citizen_address=Entry(lableframeleft,font=("times new roman",12,"bold"),bg="lightyellow")
-
-        txt_citizen_address.grid(row=5,column=1,padx=10,pady=5,sticky="w")
-
-        #citizen Nationality with combobox
-        lbl_citizen_nation=Label(lableframeleft,text="Nationality",font=("times new roman",12,"bold"),bg="white")
-
-        lbl_citizen_nation.grid(row=6,column=0,padx=10,pady=5,sticky="w")
-
-        # create a list of countries
+        #citizen Footer
+        lbl_citizen_nationnality=Label(lableframeleft,text="Nationality",font=("times new roman",12,"bold"),bg="white")
         countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda","Viet Nam" ]
 
         # create the combobox
@@ -115,20 +103,33 @@ class Information:
         
         Table_Frame=LabelFrame(self.root,bd=2,relief=RIDGE,text="Citizen Information Details",font=("arial",12,"bold"),fg="gold",bg="white",padx=2)
         Table_Frame.place(x=435,y=50,width=860,height=490)
+       
         lblSearch=Label(Table_Frame,text="Search By",font=("arial",12,"bold"),bg="white",fg="black")
-        lblSearch.grid(row=0,column=0,sticky="w")
+        lblSearch.grid(row=0,column=0,padx=2,sticky="w")
+        
+        combo_Search=ttk.Combobox(Table_Frame,font=("arial",12,"bold"),state="readonly",width=10)
+        combo_Search["value"]=["Citizen ref","Citizen ID","Citizen Name"]
+        combo_Search.current(0)
+        combo_Search.grid(row=0,column=1)
+        
+        txt_Search=Entry(Table_Frame,font=("arial",13,"bold"),bg="lightyellow",bd=5,relief=GROOVE,width=25)
+        txt_Search.grid(row=0,column=2,padx=2)
+        
+        btn_Search=Button(Table_Frame,text="Search By",font=("arial",11,"bold"),bg="black",fg="yellow",width=10)
+        btn_Search.grid(row=0,column=3,padx=1)
         
         
-        txtSearch=ttk.Entry(Table_Frame,font=("arial",13,"bold"),width=23)
-        txtSearch.grid(row=0,column=2,sticky="w")
+        btn_ShowAll=Button(Table_Frame,text="Show All",font=("arial",11,"bold"),bg="black",fg="yellow",width=10)
+        btn_ShowAll.grid(row=0,column=4,padx=1)
+        
+
+
+        
+
+       
         
         
-        btnSearch=Button(Table_Frame,text="Search",font=("arial",12,"bold"),bg="black",fg="yellow",width=10)
-        btnSearch.grid(row=0,column=3,padx=2,pady=2)
-        
-        btnShowAll=Button(Table_Frame,text="Show All",font=("arial",12,"bold"),bg="black",fg="yellow",width=10)
-        btnShowAll.grid(row=0,column=4,padx=2,pady=2)
-        
+       
         ## data table
         
         details_table=Frame(Table_Frame,bd=2,relief=RIDGE)
