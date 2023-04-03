@@ -1,4 +1,4 @@
-from tkinter import *
+ from tkinter import *
 from tkinter import ttk
 
 class Information:
@@ -88,8 +88,12 @@ class Information:
         combo_marriage.current(0)
 
         combo_marriage.grid(row=7,column=1,padx=10,pady=5,sticky="w")
+        
+         
+       
 
-         ## button frame
+
+        ## button frame
         btn_frame=Frame(lableframeleft,bd=2,relief=RIDGE,)
         btn_frame.place(x=0,y=400,width=412,height=40)
         
@@ -106,14 +110,80 @@ class Information:
         #clear button
         btn_clear=Button(btn_frame,text="Clear",font=("arial",11,"bold"),bg="black",fg="yellow",width=10)
         btn_clear.grid(row=0,column=3)
+        
+        ##            Table SEARCH FRAME
+        
+        Table_Frame=LabelFrame(self.root,bd=2,relief=RIDGE,text="Citizen Information Details",font=("arial",12,"bold"),fg="gold",bg="white",padx=2)
+        Table_Frame.place(x=435,y=50,width=860,height=490)
+        lblSearch=Label(Table_Frame,text="Search By",font=("arial",12,"bold"),bg="white",fg="black")
+        lblSearch.grid(row=0,column=0,sticky="w")
+        
+        
+        txtSearch=ttk.Entry(Table_Frame,font=("arial",13,"bold"),width=23)
+        txtSearch.grid(row=0,column=2,sticky="w")
+        
+        
+        btnSearch=Button(Table_Frame,text="Search",font=("arial",12,"bold"),bg="black",fg="yellow",width=10)
+        btnSearch.grid(row=0,column=3,padx=2,pady=2)
+        
+        btnShowAll=Button(Table_Frame,text="Show All",font=("arial",12,"bold"),bg="black",fg="yellow",width=10)
+        btnShowAll.grid(row=0,column=4,padx=2,pady=2)
+        
+        ## data table
+        
+        details_table=Frame(Table_Frame,bd=2,relief=RIDGE)
+        details_table.place(x=0,y=50,width=850,height=410)
+        
+        scroll_x=ttk.Scrollbar(details_table,orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(details_table,orient=VERTICAL)
+        
 
+        self.Cust_Details_Table=ttk.Treeview(details_table,column=("Ref","Name","ID","DOB","Gender","Address","Nationality","Marriage"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        
+        scroll_x.pack(side=BOTTOM,fill=X)
+        scroll_y.pack(side=RIGHT,fill=Y)
+        
+        scroll_x.config(command=self.Cust_Details_Table.xview)
+        scroll_y.config(command=self.Cust_Details_Table.yview)
+
+        self.Cust_Details_Table.heading("Ref",text="Ref")
+        self.Cust_Details_Table.heading("Name",text="Name")
+        self.Cust_Details_Table.heading("ID",text="ID")
+        self.Cust_Details_Table.heading("DOB",text="DOB")
+        self.Cust_Details_Table.heading("Gender",text="Gender")
+        self.Cust_Details_Table.heading("Address",text="Address")
+        self.Cust_Details_Table.heading("Nationality",text="nation")
+        self.Cust_Details_Table.heading("Marriage",text="Marriage")
+        
+        self.Cust_Details_Table["show"]="headings"
+        
     
+        self.Cust_Details_Table.column("Ref",width=100)
+        
+        self.Cust_Details_Table.column("Name",width=100)
+        self.Cust_Details_Table.column("ID",width=100)
+        self.Cust_Details_Table.column("DOB",width=100)
+        self.Cust_Details_Table.column("Gender",width=100)
+        self.Cust_Details_Table.column("Address",width=100)
+        self.Cust_Details_Table.column("Nationality",width=100)
+        self.Cust_Details_Table.column("Marriage",width=100)
 
 
+        self.Cust_Details_Table.pack(fill=BOTH,expand=1)
+        
 
-
+        
+        
 
             
+                    
+        
+        
+        
+        
+        
+        
+        
         
         
 if __name__ == "__main__":
